@@ -117,16 +117,17 @@ pipeline {
    steps {
     echo 'Stashing Local Changes'
     sh 'git stash'
-    echo 'Checking out dev Branch '
+    echo 'Checking out dev Branch'
     sh 'git checkout dev'
-    echo 'Checking out master Branch '
+    echo 'Checking out master Branch'
     sh 'git checkout master'
-    echo 'Merging dev into master Branch '
-    sh 'git merge dev'
-    echo 'Pushing into master Branch '
-    sh 'git push origin master'
-
-
+    echo 'Merging dev into master Branch'
+    //sh 'git merge dev'
+    echo 'Pushing into master Branch'
+    //sh 'git push origin master'
+    echo 'Tagging the Release'
+    sh 'git tag Calculator-${VERSION}'
+    sh 'git push origin Calculator-${VERSION}'
    }
 
   }
