@@ -100,7 +100,12 @@ pipeline {
     sh 'java -cp target/RaviCalculator-' + VERSION + '.jar com.ravi.cal.RaviCalculator.Calculator 4 5'
    }
   }
-
+  
+  /* 
+  After Functional Testing Is Successfull, Pushing the dev branch code to master branch
+  Make sure to add the git url in ssh format
+  Add the ssh public key of node1(slave) to github trusted keys in Settings > SSH and GPG Keys
+  */
   stage('Promote Dev Branch To Master') {
    agent {
     label 'node1'
