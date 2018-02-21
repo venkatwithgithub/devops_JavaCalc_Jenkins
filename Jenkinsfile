@@ -101,6 +101,31 @@ pipeline {
    }
   }
 
+  stage('Promote Dev Branch To Master') {
+   agent {
+    label 'node1'
+   }
+
+   when {
+    branch 'dev'
+   }
+   steps {
+    echo 'Stashing Local Changes'
+    sh 'git stash'
+    echo 'Checking out dev Branch '
+    sh 'git checkout dev'
+    echo 'Checking out master Branch '
+    sh 'git checkout master'
+    echo 'Merging dev into master Branch '
+    sh 'git merge dev'
+    echo 'Pushing into master Branch '
+    sh 'git push origin master'
+
+
+   }
+
+  }
+
  }
 
  // Post Build Option --> Archiving Artifacts steps
